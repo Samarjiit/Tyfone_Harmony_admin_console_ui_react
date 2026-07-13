@@ -1,0 +1,1068 @@
+{
+  "generatedFrom": "admin-console-service properties files",
+  "bankIdToFolder": {
+    "0": "chR4",
+    "8": "TvvS",
+    "9": "CoVa",
+    "10": "RtNu",
+    "11": "htXy",
+    "14": "PmCu",
+    "15": "StFr",
+    "16": "CuCo",
+    "17": "EstId",
+    "18": "Sffedcu",
+    "19": "Ourcu",
+    "20": "Cuttingedge",
+    "21": "Wauna",
+    "23": "Nfiniacu",
+    "24": "Alaska",
+    "25": "Cunifydemo",
+    "26": "EmpriseBank",
+    "28": "Nfiniabbdemo",
+    "29": "Chealthcu",
+    "30": "Connectioncu",
+    "31": "Americanlakecu",
+    "32": "Fccu",
+    "33": "Sffedcorelation",
+    "34": "Selfreliance",
+    "35": "Gwucu",
+    "36": "Affcu",
+    "37": "Numericacu",
+    "38": "Oregonianscu",
+    "39": "Pioneerfcu",
+    "40": "Chevronfcu",
+    "41": "Spectrumcu",
+    "43": "Connectidahocu",
+    "44": "Maroonfcu",
+    "45": "Onefcu",
+    "46": "Psccu",
+    "47": "Centralwcu",
+    "48": "Expeditioncu",
+    "49": "Gmfcu",
+    "50": "Tlcu",
+    "51": "Hffcu",
+    "52": "Nordstromfcu",
+    "53": "Southwestcu",
+    "54": "Maroonfcusymex",
+    "55": "Arcadiacu",
+    "56": "Mmccu",
+    "57": "Swffcu",
+    "58": "Muskogeefcu",
+    "59": "Macu",
+    "60": "Rocu",
+    "61": "Demopenni_business",
+    "62": "Demopenni_bank",
+    "63": "Demopennifinancial",
+    "64": "Selfreliancefcucorelation",
+    "66": "Pennicorrelation",
+    "67": "Swffcucorrelation",
+    "68": "Oucu",
+    "69": "Diamondcu",
+    "70": "Bank3",
+    "71": "Elga",
+    "72": "Gcfcu",
+    "73": "Caro",
+    "74": "Aagcusym",
+    "75": "Ubifcu",
+    "76": "Ccbank",
+    "77": "Sunwestcu",
+    "78": "Oucucorelation",
+    "79": "Stpaulfcu",
+    "80": "Palmetto",
+    "81": "Bronco",
+    "82": "Partners1st",
+    "83": "Ithink",
+    "84": "Gathercu",
+    "85": "Prestigecu",
+    "86": "Caltech",
+    "87": "Obeecu",
+    "88": "Baycities",
+    "89": "Metrocu"
+  },
+  "hosts": {
+    "staroneuat.tyfone.com": {
+      "bankId": "8",
+      "resourceId": "TvvS"
+    },
+    "rtntest.tyfone.com": {
+      "bankId": "10",
+      "resourceId": "RtNu"
+    },
+    "ssftest.tyfone.com": {
+      "bankId": "11",
+      "resourceId": "htXy"
+    },
+    "bvcutest.tyfone.com": {
+      "bankId": "14",
+      "resourceId": "PmCu"
+    },
+    "stfrtest.tyfone.com": {
+      "bankId": "15",
+      "resourceId": "StFr"
+    },
+    "cocutest.tyfone.com": {
+      "bankId": "16",
+      "resourceId": "CuCo"
+    },
+    "cuofcouat.tyfone.com": {
+      "bankId": "16",
+      "resourceId": "CuCo"
+    },
+    "nfinia-demo-admin.tyfone.com": {
+      "bankId": "0",
+      "resourceId": "chR4"
+    },
+    "estidtest.tyfone.com": {
+      "bankId": "17",
+      "resourceId": "EstId"
+    },
+    "nfiniabbdemotest.tyfone.com": {
+      "bankId": "28",
+      "resourceId": "Nfiniabbdemo"
+    },
+    "sffedcutest.tyfone.com": {
+      "bankId": "18",
+      "resourceId": "Sffedcu"
+    },
+    "sffedtest.tyfone.com": {
+      "bankId": "18",
+      "resourceId": "Sffedcu"
+    },
+    "ourcutest.tyfone.com": {
+      "bankId": "19",
+      "resourceId": "Ourcu"
+    },
+    "ourcumcbtest.tyfone.com": {
+      "bankId": "19",
+      "resourceId": "Ourcu"
+    },
+    "emprisetest.tyfone.com": {
+      "bankId": "26",
+      "resourceId": "EmpriseBank"
+    },
+    "numericadev.tyfone.com": {
+      "bankId": "37",
+      "resourceId": "Numericacu"
+    },
+    "oregonianscutest.tyfone.com": {
+      "bankId": "38",
+      "resourceId": "Oregonianscu"
+    },
+    "mcbdemo-test.tyfone.com": {
+      "bankId": "0",
+      "resourceId": "chR4"
+    },
+    "staronetest.tyfone.com": {
+      "bankId": "8",
+      "resourceId": "TvvS"
+    },
+    "ssfmcb.tyfone.com": {
+      "bankId": "11",
+      "resourceId": "htXy"
+    },
+    "pmcutest.tyfone.com": {
+      "bankId": "14",
+      "resourceId": "PmCu"
+    },
+    "waunatest.tyfone.com": {
+      "bankId": "21",
+      "resourceId": "Wauna"
+    },
+    "cuttingedgetest.tyfone.com": {
+      "bankId": "20",
+      "resourceId": "Cuttingedge"
+    },
+    "alaskatest.tyfone.com": {
+      "bankId": "24",
+      "resourceId": "Alaska"
+    },
+    "nfiniacutest.tyfone.com": {
+      "bankId": "23",
+      "resourceId": "Nfiniacu"
+    },
+    "cp-alaskatest.tyfone.com": {
+      "bankId": "24",
+      "resourceId": "Alaska"
+    },
+    "cp-nfiniacutest.tyfone.com": {
+      "bankId": "23",
+      "resourceId": "Nfiniacu"
+    },
+    "cp-waunatest.tyfone.com": {
+      "bankId": "21",
+      "resourceId": "Wauna"
+    },
+    "cp-cuttingedgetest.tyfone.com": {
+      "bankId": "20",
+      "resourceId": "Cuttingedge"
+    },
+    "cp-chealthcutest.tyfone.com": {
+      "bankId": "29",
+      "resourceId": "Chealthcu"
+    },
+    "cp-connectioncutest.tyfone.com": {
+      "bankId": "30",
+      "resourceId": "Connectioncu"
+    },
+    "chealthcutest.tyfone.com": {
+      "bankId": "29",
+      "resourceId": "Chealthcu"
+    },
+    "connectioncutest.tyfone.com": {
+      "bankId": "30",
+      "resourceId": "Connectioncu"
+    },
+    "metrocutest.tyfone.com": {
+      "bankId": "89",
+      "resourceId": "Metrocu"
+    },
+    "baycitiestest.tyfone.com": {
+      "bankId": "88",
+      "resourceId": "Baycities"
+    },
+    "obeecutest.tyfone.com": {
+      "bankId": "87",
+      "resourceId": "Obeecu"
+    },
+    "caltechtest.tyfone.com": {
+      "bankId": "86",
+      "resourceId": "Caltech"
+    },
+    "prestigecutest.tyfone.com": {
+      "bankId": "85",
+      "resourceId": "Prestigecu"
+    },
+    "gathercutest.tyfone.com": {
+      "bankId": "84",
+      "resourceId": "Gathercu"
+    },
+    "ithinktest.tyfone.com": {
+      "bankId": "83",
+      "resourceId": "Ithink"
+    },
+    "partners1sttest.tyfone.com": {
+      "bankId": "82",
+      "resourceId": "Partners1st"
+    },
+    "broncotest.tyfone.com": {
+      "bankId": "81",
+      "resourceId": "Bronco"
+    },
+    "palmettotest.tyfone.com": {
+      "bankId": "80",
+      "resourceId": "Palmetto"
+    },
+    "stpaulfcutest.tyfone.com": {
+      "bankId": "79",
+      "resourceId": "Stpaulfcu"
+    },
+    "oucucorelationtest.tyfone.com": {
+      "bankId": "78",
+      "resourceId": "Oucucorelation"
+    },
+    "sunwestcutest.tyfone.com": {
+      "bankId": "77",
+      "resourceId": "Sunwestcu"
+    },
+    "ccbanktest.tyfone.com": {
+      "bankId": "76",
+      "resourceId": "Ccbank"
+    },
+    "ubifcutest.tyfone.com": {
+      "bankId": "75",
+      "resourceId": "Ubifcu"
+    },
+    "aagcusymtest.tyfone.com": {
+      "bankId": "74",
+      "resourceId": "Aagcusym"
+    },
+    "carotest.tyfone.com": {
+      "bankId": "73",
+      "resourceId": "Caro"
+    },
+    "gcfcutest.tyfone.com": {
+      "bankId": "72",
+      "resourceId": "Gcfcu"
+    },
+    "elgatest.tyfone.com": {
+      "bankId": "71",
+      "resourceId": "Elga"
+    },
+    "bank3test.tyfone.com": {
+      "bankId": "70",
+      "resourceId": "Bank3"
+    },
+    "diamondcutest.tyfone.com": {
+      "bankId": "69",
+      "resourceId": "Diamondcu"
+    },
+    "oucutest.tyfone.com": {
+      "bankId": "68",
+      "resourceId": "Oucu"
+    },
+    "swffcucorrelationtest.tyfone.com": {
+      "bankId": "67",
+      "resourceId": "Swffcucorrelation"
+    },
+    "pennicorrelationtest.tyfone.com": {
+      "bankId": "66",
+      "resourceId": "Pennicorrelation"
+    },
+    "selfreliancefcucorelationtest.tyfone.com": {
+      "bankId": "64",
+      "resourceId": "Selfreliancefcucorelation"
+    },
+    "demopennifinancialtest.tyfone.com": {
+      "bankId": "63",
+      "resourceId": "Demopennifinancial"
+    },
+    "demopenni_banktest.tyfone.com": {
+      "bankId": "62",
+      "resourceId": "Demopenni_bank"
+    },
+    "demopenni_businesstest.tyfone.com": {
+      "bankId": "61",
+      "resourceId": "Demopenni_business"
+    },
+    "pennifinancial-admin.tyfone.com": {
+      "bankId": "63",
+      "resourceId": "Demopennifinancial"
+    },
+    "pennibank-admin.tyfone.com": {
+      "bankId": "62",
+      "resourceId": "Demopenni_bank"
+    },
+    "pennicommercial-admin.tyfone.com": {
+      "bankId": "61",
+      "resourceId": "Demopenni_business"
+    },
+    "rocutest.tyfone.com": {
+      "bankId": "60",
+      "resourceId": "Rocu"
+    },
+    "macutest.tyfone.com": {
+      "bankId": "59",
+      "resourceId": "Macu"
+    },
+    "muskogeefcutest.tyfone.com": {
+      "bankId": "58",
+      "resourceId": "Muskogeefcu"
+    },
+    "swffcutest.tyfone.com": {
+      "bankId": "57",
+      "resourceId": "Swffcu"
+    },
+    "mmccutest.tyfone.com": {
+      "bankId": "56",
+      "resourceId": "Mmccu"
+    },
+    "arcadiacutest.tyfone.com": {
+      "bankId": "55",
+      "resourceId": "Arcadiacu"
+    },
+    "maroonfcusymextest.tyfone.com": {
+      "bankId": "54",
+      "resourceId": "Maroonfcusymex"
+    },
+    "southwestcutest.tyfone.com": {
+      "bankId": "53",
+      "resourceId": "Southwestcu"
+    },
+    "nordstromfcutest.tyfone.com": {
+      "bankId": "52",
+      "resourceId": "Nordstromfcu"
+    },
+    "hffcutest.tyfone.com": {
+      "bankId": "51",
+      "resourceId": "Hffcu"
+    },
+    "tlcutest.tyfone.com": {
+      "bankId": "50",
+      "resourceId": "Tlcu"
+    },
+    "gmfcutest.tyfone.com": {
+      "bankId": "49",
+      "resourceId": "Gmfcu"
+    },
+    "psccutest.tyfone.com": {
+      "bankId": "46",
+      "resourceId": "Psccu"
+    },
+    "centralwcutest.tyfone.com": {
+      "bankId": "47",
+      "resourceId": "Centralwcu"
+    },
+    "expeditioncutest.tyfone.com": {
+      "bankId": "48",
+      "resourceId": "Expeditioncu"
+    },
+    "onefcutest.tyfone.com": {
+      "bankId": "45",
+      "resourceId": "Onefcu"
+    },
+    "connectidahocutest.tyfone.com": {
+      "bankId": "43",
+      "resourceId": "Connectidahocu"
+    },
+    "maroonfcutest.tyfone.com": {
+      "bankId": "44",
+      "resourceId": "Maroonfcu"
+    },
+    "spectrumcutest.tyfone.com": {
+      "bankId": "41",
+      "resourceId": "Spectrumcu"
+    },
+    "spectrumcuoktatest.tyfone.com": {
+      "bankId": "41",
+      "resourceId": "Spectrumcu"
+    },
+    "chevronfcutest.tyfone.com": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "chevronfcuoktatest.tyfone.com": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "pioneerfcutest.tyfone.com": {
+      "bankId": "39",
+      "resourceId": "Pioneerfcu"
+    },
+    "cp-cunifydemotest.tyfone.com": {
+      "bankId": "25",
+      "resourceId": "Cunifydemo"
+    },
+    "cunifydemotest.tyfone.com": {
+      "bankId": "25",
+      "resourceId": "Cunifydemo"
+    },
+    "cp-numericacutest.tyfone.com": {
+      "bankId": "37",
+      "resourceId": "Numericacu"
+    },
+    "numericacutest.tyfone.com": {
+      "bankId": "37",
+      "resourceId": "Numericacu"
+    },
+    "affcutest.tyfone.com": {
+      "bankId": "36",
+      "resourceId": "Affcu"
+    },
+    "cp-gwucutest.tyfone.com": {
+      "bankId": "35",
+      "resourceId": "Gwucu"
+    },
+    "gwucutest.tyfone.com": {
+      "bankId": "35",
+      "resourceId": "Gwucu"
+    },
+    "cp-sffedcorelationtest.tyfone.com": {
+      "bankId": "33",
+      "resourceId": "Sffedcorelation"
+    },
+    "sffedcorelationtest.tyfone.com": {
+      "bankId": "33",
+      "resourceId": "Sffedcorelation"
+    },
+    "cp-selfreliancetest.tyfone.com": {
+      "bankId": "34",
+      "resourceId": "Selfreliance"
+    },
+    "selfreliancetest.tyfone.com": {
+      "bankId": "34",
+      "resourceId": "Selfreliance"
+    },
+    "cp-fccutest.tyfone.com": {
+      "bankId": "32",
+      "resourceId": "Fccu"
+    },
+    "fccutest.tyfone.com": {
+      "bankId": "32",
+      "resourceId": "Fccu"
+    },
+    "cp-americanlakecutest.tyfone.com": {
+      "bankId": "31",
+      "resourceId": "Americanlakecu"
+    },
+    "americanlakecutest.tyfone.com": {
+      "bankId": "31",
+      "resourceId": "Americanlakecu"
+    },
+    "emprisebanktest.tyfone.com": {
+      "bankId": "26",
+      "resourceId": "EmpriseBank"
+    },
+    "www.m.starone.mobi": {
+      "bankId": "8",
+      "resourceId": "TvvS"
+    },
+    "m.myrtn.mobi": {
+      "bankId": "10",
+      "resourceId": "RtNu"
+    },
+    "mb.ssfcu.org": {
+      "bankId": "11",
+      "resourceId": "htXy"
+    },
+    "mypmcu.mobi": {
+      "bankId": "14",
+      "resourceId": "PmCu"
+    },
+    "member.sffedcu.com": {
+      "bankId": "18",
+      "resourceId": "Sffedcu"
+    },
+    "mb1.ssfcu.org": {
+      "bankId": "11",
+      "resourceId": "htXy"
+    },
+    "stfranciscuvb.tyfone.com": {
+      "bankId": "15",
+      "resourceId": "StFr"
+    },
+    "mb.cuofco.org": {
+      "bankId": "16",
+      "resourceId": "CuCo"
+    },
+    "cuofco-mb-prod.tyfone.com": {
+      "bankId": "16",
+      "resourceId": "CuCo"
+    },
+    "eastidahocuvb.tyfone.com": {
+      "bankId": "17",
+      "resourceId": "EstId"
+    },
+    "estid-prod.tyfone.com": {
+      "bankId": "17",
+      "resourceId": "EstId"
+    },
+    "mobile.ourcu.com": {
+      "bankId": "19",
+      "resourceId": "Ourcu"
+    },
+    "mb.fideliscu.org": {
+      "bankId": "32",
+      "resourceId": "Fccu"
+    },
+    "mb.commhealthcu.org": {
+      "bankId": "29",
+      "resourceId": "Chealthcu"
+    },
+    "mb.connectioncu.org": {
+      "bankId": "30",
+      "resourceId": "Connectioncu"
+    },
+    "mb.americanlake.org": {
+      "bankId": "31",
+      "resourceId": "Americanlakecu"
+    },
+    "mb.aagcu.org": {
+      "bankId": "24",
+      "resourceId": "Alaska"
+    },
+    "connectioncu.tyfone.com": {
+      "bankId": "30",
+      "resourceId": "Connectioncu"
+    },
+    "fideliscuprod.tyfone.com": {
+      "bankId": "32",
+      "resourceId": "Fccu"
+    },
+    "sffedcu-corelation-prod-mb.tyfone.com": {
+      "bankId": "33",
+      "resourceId": "Sffedcorelation"
+    },
+    "mb.selfreliance.com": {
+      "bankId": "34",
+      "resourceId": "Selfreliance"
+    },
+    "vbprod-cuttingedge.tyfone.com": {
+      "bankId": "20",
+      "resourceId": "Cuttingedge"
+    },
+    "mb.affcu.org": {
+      "bankId": "36",
+      "resourceId": "Affcu"
+    },
+    "numericacu-prod-mb.tyfone.com": {
+      "bankId": "37",
+      "resourceId": "Numericacu"
+    },
+    "mobile.numericacu.com": {
+      "bankId": "37",
+      "resourceId": "Numericacu"
+    },
+    "emprisebank-prod-mb.tyfone.com": {
+      "bankId": "26",
+      "resourceId": "EmpriseBank"
+    },
+    "mb.emprisebank.com": {
+      "bankId": "26",
+      "resourceId": "EmpriseBank"
+    },
+    "pioneerfcu-prod-mb.tyfone.com": {
+      "bankId": "39",
+      "resourceId": "Pioneerfcu"
+    },
+    "mobile.pioneerfcu.org": {
+      "bankId": "39",
+      "resourceId": "Pioneerfcu"
+    },
+    "chevronfcu.tyfone.com": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "chevronfcu-prod.tyfone.com": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "spectrumcu.tyfone.com": {
+      "bankId": "41",
+      "resourceId": "Spectrumcu"
+    },
+    "spectrumcu-prod.tyfone.com": {
+      "bankId": "41",
+      "resourceId": "Spectrumcu"
+    },
+    "chevronfcuokta.tyfone.com": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "chevronfcuokta-prod.tyfone.com": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "spectrumcuokta.tyfone.com": {
+      "bankId": "41",
+      "resourceId": "Spectrumcu"
+    },
+    "spectrumcuokta-prod.tyfone.com": {
+      "bankId": "41",
+      "resourceId": "Spectrumcu"
+    },
+    "mb.spectrumcu.org": {
+      "bankId": "41",
+      "resourceId": "Spectrumcu"
+    },
+    "mb.chevronfcu.org": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "mb.spectrumcuokta.org": {
+      "bankId": "41",
+      "resourceId": "Spectrumcu"
+    },
+    "mb.chevronfcuokta.org": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "maroonfcu.tyfone.com": {
+      "bankId": "44",
+      "resourceId": "Maroonfcu"
+    },
+    "mb.maroonfinancial.org": {
+      "bankId": "44",
+      "resourceId": "Maroonfcu"
+    },
+    "connectidahocu.tyfone.com": {
+      "bankId": "43",
+      "resourceId": "Connectidahocu"
+    },
+    "psccu.tyfone.com": {
+      "bankId": "46",
+      "resourceId": "Psccu"
+    },
+    "mobile.psccu.org": {
+      "bankId": "46",
+      "resourceId": "Psccu"
+    },
+    "onefcu.tyfone.com": {
+      "bankId": "45",
+      "resourceId": "Onefcu"
+    },
+    "expeditioncu.tyfone.com": {
+      "bankId": "48",
+      "resourceId": "Expeditioncu"
+    },
+    "centralwcu.tyfone.com": {
+      "bankId": "47",
+      "resourceId": "Centralwcu"
+    },
+    "hffcu.tyfone.com": {
+      "bankId": "51",
+      "resourceId": "Hffcu"
+    },
+    "gmfcu.tyfone.com": {
+      "bankId": "49",
+      "resourceId": "Gmfcu"
+    },
+    "oregonianscu.tyfone.com": {
+      "bankId": "38",
+      "resourceId": "Oregonianscu"
+    },
+    "southwestcu.tyfone.com": {
+      "bankId": "53",
+      "resourceId": "Southwestcu"
+    },
+    "nordstromfcu.tyfone.com": {
+      "bankId": "52",
+      "resourceId": "Nordstromfcu"
+    },
+    "mcbdemodev-test.tyfone.com": {
+      "bankId": "0",
+      "resourceId": "chR4"
+    },
+    "staronedev.tyfone.com": {
+      "bankId": "8",
+      "resourceId": "TvvS"
+    },
+    "rtndev.tyfone.com": {
+      "bankId": "10",
+      "resourceId": "RtNu"
+    },
+    "ssfdev.tyfone.com": {
+      "bankId": "11",
+      "resourceId": "htXy"
+    },
+    "bvcudev.tyfone.com": {
+      "bankId": "14",
+      "resourceId": "PmCu"
+    },
+    "pmcudev.tyfone.com": {
+      "bankId": "14",
+      "resourceId": "PmCu"
+    },
+    "stfrdev.tyfone.com": {
+      "bankId": "15",
+      "resourceId": "StFr"
+    },
+    "cucodev.tyfone.com": {
+      "bankId": "16",
+      "resourceId": "CuCo"
+    },
+    "estiddev.tyfone.com": {
+      "bankId": "17",
+      "resourceId": "EstId"
+    },
+    "metrocudev.tyfone.com": {
+      "bankId": "89",
+      "resourceId": "Metrocu"
+    },
+    "baycitiesdev.tyfone.com": {
+      "bankId": "88",
+      "resourceId": "Baycities"
+    },
+    "obeecudev.tyfone.com": {
+      "bankId": "87",
+      "resourceId": "Obeecu"
+    },
+    "caltechdev.tyfone.com": {
+      "bankId": "86",
+      "resourceId": "Caltech"
+    },
+    "prestigecudev.tyfone.com": {
+      "bankId": "85",
+      "resourceId": "Prestigecu"
+    },
+    "gathercudev.tyfone.com": {
+      "bankId": "84",
+      "resourceId": "Gathercu"
+    },
+    "ithinkdev.tyfone.com": {
+      "bankId": "83",
+      "resourceId": "Ithink"
+    },
+    "partners1stdev.tyfone.com": {
+      "bankId": "82",
+      "resourceId": "Partners1st"
+    },
+    "broncodev.tyfone.com": {
+      "bankId": "81",
+      "resourceId": "Bronco"
+    },
+    "palmettodev.tyfone.com": {
+      "bankId": "80",
+      "resourceId": "Palmetto"
+    },
+    "stpaulfcudev.tyfone.com": {
+      "bankId": "79",
+      "resourceId": "Stpaulfcu"
+    },
+    "oucucorelationdev.tyfone.com": {
+      "bankId": "78",
+      "resourceId": "Oucucorelation"
+    },
+    "sunwestcudev.tyfone.com": {
+      "bankId": "77",
+      "resourceId": "Sunwestcu"
+    },
+    "ccbankdev1234.tyfone.com": {
+      "bankId": "76",
+      "resourceId": "Ccbank"
+    },
+    "ubifcudev.tyfone.com": {
+      "bankId": "75",
+      "resourceId": "Ubifcu"
+    },
+    "aagcusymdev.tyfone.com": {
+      "bankId": "74",
+      "resourceId": "Aagcusym"
+    },
+    "carodev.tyfone.com": {
+      "bankId": "73",
+      "resourceId": "Caro"
+    },
+    "gcfcudev.tyfone.com": {
+      "bankId": "72",
+      "resourceId": "Gcfcu"
+    },
+    "elgadev123.tyfone.com": {
+      "bankId": "71",
+      "resourceId": "Elga"
+    },
+    "bank3dev.tyfone.com": {
+      "bankId": "70",
+      "resourceId": "Bank3"
+    },
+    "diamondcudev1.tyfone.com": {
+      "bankId": "69",
+      "resourceId": "Diamondcu"
+    },
+    "oucudev.tyfone.com": {
+      "bankId": "68",
+      "resourceId": "Oucu"
+    },
+    "swffcucorrelationdev.tyfone.com": {
+      "bankId": "67",
+      "resourceId": "Swffcucorrelation"
+    },
+    "pennicorrelationdev.tyfone.com": {
+      "bankId": "66",
+      "resourceId": "Pennicorrelation"
+    },
+    "selfreliancefcucorelationdev.tyfone.com": {
+      "bankId": "64",
+      "resourceId": "Selfreliancefcucorelation"
+    },
+    "demopennifinancialdev.tyfone.com": {
+      "bankId": "63",
+      "resourceId": "Demopennifinancial"
+    },
+    "demopenni_bankdev.tyfone.com": {
+      "bankId": "62",
+      "resourceId": "Demopenni_bank"
+    },
+    "demopenni_businessdev.tyfone.com": {
+      "bankId": "61",
+      "resourceId": "Demopenni_business"
+    },
+    "rocudev.tyfone.com": {
+      "bankId": "60",
+      "resourceId": "Rocu"
+    },
+    "macudev.tyfone.com": {
+      "bankId": "59",
+      "resourceId": "Macu"
+    },
+    "muskogeefcudev.tyfone.com": {
+      "bankId": "58",
+      "resourceId": "Muskogeefcu"
+    },
+    "swffcudev.tyfone.com": {
+      "bankId": "57",
+      "resourceId": "Swffcu"
+    },
+    "mmccudev.tyfone.com": {
+      "bankId": "56",
+      "resourceId": "Mmccu"
+    },
+    "arcadiacudev.tyfone.com": {
+      "bankId": "55",
+      "resourceId": "Arcadiacu"
+    },
+    "maroonfcusymexdev.tyfone.com": {
+      "bankId": "54",
+      "resourceId": "Maroonfcusymex"
+    },
+    "southwestcudev.tyfone.com": {
+      "bankId": "53",
+      "resourceId": "Southwestcu"
+    },
+    "nordstromfcudev.tyfone.com": {
+      "bankId": "52",
+      "resourceId": "Nordstromfcu"
+    },
+    "hffcudev.tyfone.com": {
+      "bankId": "51",
+      "resourceId": "Hffcu"
+    },
+    "tlcudev.tyfone.com": {
+      "bankId": "50",
+      "resourceId": "Tlcu"
+    },
+    "gmfcudev.tyfone.com": {
+      "bankId": "49",
+      "resourceId": "Gmfcu"
+    },
+    "psccudev.tyfone.com": {
+      "bankId": "46",
+      "resourceId": "Psccu"
+    },
+    "centralwcudev.tyfone.com": {
+      "bankId": "47",
+      "resourceId": "Centralwcu"
+    },
+    "expeditioncudev.tyfone.com": {
+      "bankId": "48",
+      "resourceId": "Expeditioncu"
+    },
+    "onefcudev.tyfone.com": {
+      "bankId": "45",
+      "resourceId": "Onefcu"
+    },
+    "connectidahocudev.tyfone.com": {
+      "bankId": "43",
+      "resourceId": "Connectidahocu"
+    },
+    "maroonfcudev.tyfone.com": {
+      "bankId": "44",
+      "resourceId": "Maroonfcu"
+    },
+    "spectrumcudev.tyfone.com": {
+      "bankId": "41",
+      "resourceId": "Spectrumcu"
+    },
+    "chevronfcudev.tyfone.com": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "chevronfcuoktadev.tyfone.com": {
+      "bankId": "40",
+      "resourceId": "Chevronfcu"
+    },
+    "pioneerfcudev.tyfone.com": {
+      "bankId": "39",
+      "resourceId": "Pioneerfcu"
+    },
+    "oregonianscudev.tyfone.com": {
+      "bankId": "38",
+      "resourceId": "Oregonianscu"
+    },
+    "cp-cunifydemodev.tyfone.com": {
+      "bankId": "25",
+      "resourceId": "Cunifydemo"
+    },
+    "cunifydemodev.tyfone.com": {
+      "bankId": "25",
+      "resourceId": "Cunifydemo"
+    },
+    "cp-numericacudev.tyfone.com": {
+      "bankId": "37",
+      "resourceId": "Numericacu"
+    },
+    "numericacudev.tyfone.com": {
+      "bankId": "37",
+      "resourceId": "Numericacu"
+    },
+    "affcudev.tyfone.com": {
+      "bankId": "36",
+      "resourceId": "Affcu"
+    },
+    "cp-gwucudev.tyfone.com": {
+      "bankId": "35",
+      "resourceId": "Gwucu"
+    },
+    "gwucudev.tyfone.com": {
+      "bankId": "35",
+      "resourceId": "Gwucu"
+    },
+    "cp-sffedcorelationdev.tyfone.com": {
+      "bankId": "33",
+      "resourceId": "Sffedcorelation"
+    },
+    "sffedcorelationdev.tyfone.com": {
+      "bankId": "33",
+      "resourceId": "Sffedcorelation"
+    },
+    "selfreliancedev.tyfone.com": {
+      "bankId": "34",
+      "resourceId": "Selfreliance"
+    },
+    "fccudev.tyfone.com": {
+      "bankId": "32",
+      "resourceId": "Fccu"
+    },
+    "cp-fccudev.tyfone.com": {
+      "bankId": "32",
+      "resourceId": "Fccu"
+    },
+    "americanlakecudev.tyfone.com": {
+      "bankId": "31",
+      "resourceId": "Americanlakecu"
+    },
+    "cp-americanlakecudev.tyfone.com": {
+      "bankId": "31",
+      "resourceId": "Americanlakecu"
+    },
+    "cp-connectioncudev.tyfone.com": {
+      "bankId": "30",
+      "resourceId": "Connectioncu"
+    },
+    "cp-chealthcudev.tyfone.com": {
+      "bankId": "29",
+      "resourceId": "Chealthcu"
+    },
+    "connectioncudev.tyfone.com": {
+      "bankId": "30",
+      "resourceId": "Connectioncu"
+    },
+    "chealthcudev.tyfone.com": {
+      "bankId": "29",
+      "resourceId": "Chealthcu"
+    },
+    "cp-alaskadev.tyfone.com": {
+      "bankId": "24",
+      "resourceId": "Alaska"
+    },
+    "cp-nfiniacudev.tyfone.com": {
+      "bankId": "23",
+      "resourceId": "Nfiniacu"
+    },
+    "alaskadev.tyfone.com": {
+      "bankId": "24",
+      "resourceId": "Alaska"
+    },
+    "nfiniacudev.tyfone.com": {
+      "bankId": "23",
+      "resourceId": "Nfiniacu"
+    },
+    "waunadev.tyfone.com": {
+      "bankId": "21",
+      "resourceId": "Wauna"
+    },
+    "cp-waunadev.tyfone.com": {
+      "bankId": "21",
+      "resourceId": "Wauna"
+    },
+    "cuttingedgedev.tyfone.com": {
+      "bankId": "20",
+      "resourceId": "Cuttingedge"
+    },
+    "nfiniabbdemodev.tyfone.com": {
+      "bankId": "28",
+      "resourceId": "Nfiniabbdemo"
+    },
+    "sffedcudev.tyfone.com": {
+      "bankId": "18",
+      "resourceId": "Sffedcu"
+    },
+    "ourcudev.tyfone.com": {
+      "bankId": "19",
+      "resourceId": "Ourcu"
+    },
+    "emprisebankdev.tyfone.com": {
+      "bankId": "26",
+      "resourceId": "EmpriseBank"
+    }
+  }
+}
