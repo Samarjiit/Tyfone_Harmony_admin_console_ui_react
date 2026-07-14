@@ -283,10 +283,16 @@ export const dashboardFooter = {
 
 /* ---------- authenticated shell: top navbar + sidebar (header.jsp / sidebar.jsp) ---------- */
 
+// The shell never exceeds the viewport width: wide page content scrolls
+// INSIDE <main> (shellMain overflowX) instead of stretching the document, so
+// the navbar and footer always span exactly the visible width and the
+// right-side icons are always on screen.
 export const shellRoot = {
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
+  maxWidth: '100%',
+  overflowX: 'clip',
 };
 
 export const topNavbar = {
@@ -295,12 +301,13 @@ export const topNavbar = {
   zIndex: 50,
   display: 'flex',
   alignItems: 'center',
-  gap: '18px',
+  // tighter spacing on small screens so logo + right icons fit on one row
+  gap: { xs: '10px', md: '18px' },
   minHeight: '70px', // header.jsp: min-height:70px
   background: '#fff',
   borderBottom: '1px solid #e2e5e9',
   boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
-  padding: '0 22px',
+  padding: { xs: '0 12px', md: '0 22px' },
 };
 
 export const hamburgerBtn = {
@@ -312,23 +319,33 @@ export const hamburgerBtn = {
   alignItems: 'center',
 };
 
+// Logo hides below md alongside the search bar — small screens show only the
+// hamburger (left) and the three controls (right).
 export const navbarLogo = {
+  display: { xs: 'none', md: 'block' },
   height: '52px',
   maxWidth: '160px',
   objectFit: 'contain',
   cursor: 'pointer',
 };
 
+// The global search hides below the md breakpoint (like the JSP responsive
+// header, which collapses #searchBar on small screens) — logo + right icons
+// remain, laid out on a single row.
 export const navbarCenter = {
   flex: 1,
-  display: 'flex',
+  display: { xs: 'none', md: 'flex' },
   justifyContent: 'center',
 };
 
 export const navbarRight = {
   display: 'flex',
   alignItems: 'center',
-  gap: '22px',
+  gap: { xs: '8px', md: '22px' },
+  // navbar is always exactly viewport-wide (shellRoot clips overflow), so
+  // margin-left:auto alone pins the cluster to the visible right edge
+  marginLeft: 'auto',
+  flexShrink: 0,
 };
 
 export const navIconBtn = {
@@ -518,15 +535,17 @@ export const sidebarItemLabel = {
   fontSize: '15px',
 };
 
+// Submenu rows match the JSP sidebar: rows span the drawer width with the
+// text indented, and the selected row gets a light gray background.
 export const sidebarSubList = {
   listStyle: 'none',
   margin: '2px 0 6px',
-  padding: '0 0 0 44px',
+  padding: 0,
 };
 
 export const sidebarSubItem = {
   display: 'block',
-  padding: '8px 10px',
+  padding: '10px 10px 10px 48px',
   fontSize: '13.5px',
   color: '#5f6b7a',
   borderRadius: '4px',
@@ -535,12 +554,20 @@ export const sidebarSubItem = {
   '&:hover': { background: '#f2f4f7' },
 };
 
+export const sidebarSubItemActive = {
+  background: '#eceff2',
+  color: '#3f4a56',
+};
+
 export const shellMain = {
   flex: 1,
   minWidth: 0,
+  // content wider than the remaining space scrolls inside <main>, so the
+  // document itself never scrolls horizontally
+  overflowX: 'auto',
   display: 'flex',
   flexDirection: 'column',
-  padding: '28px 32px 0',
+  padding: { xs: '20px 14px 0', md: '28px 32px 0' },
 };
 
 /* ---------- logged-out page (logout.jsp) ---------- */

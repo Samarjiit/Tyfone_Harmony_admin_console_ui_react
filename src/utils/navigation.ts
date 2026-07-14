@@ -76,7 +76,7 @@ export const NAV_SECTIONS: NavSection[] = [
     children: [
       { label: 'User Report', feature: 219, route: '/user_new_report' },
       { label: 'Usage Report', feature: 220, route: '/usage_new_report' },
-      { label: 'Summary', feature: 201, route: '/dashboard' },
+      { label: 'Summary', feature: 201, route: '/summary' },
       { label: 'Login Trend', feature: 202, route: '/get_overall_login_trend_report' },
       { label: 'Enrollment', feature: 203, route: '/enrollment_report' },
       { label: 'Feedback', feature: 209, route: '/rating_feedback' },
