@@ -1,5 +1,5 @@
 /**
- * Dashboard (Home) — migrated from JSP dashboard.jsp to React with MUI Charts
+ * Dashboard (Home) — migrated from JSP dashboard.jsp to React with Apache ECharts
  * Displays login trend and enrollment trend charts for the last 7 days.
  * Uses reusable chart components with clean separation of concerns.
  */
@@ -10,6 +10,7 @@ import { EnrollmentTrendChart, EnrollmentTrendLegend } from '../components/Enrol
 import { useAuth } from '../context/AuthContext';
 import { useTenant } from '../context/TenantContext';
 import { http } from '../services/http';
+import { chartColors, uiColors } from '../constants/colors';
 
 interface DashboardResponse {
   status: string;
@@ -182,11 +183,11 @@ export default function DashboardPage() {
               alignItems: 'center',
               gap: '8px',
               fontSize: '14px',
-              color: '#333',
+              color: uiColors.text.primary,
               fontWeight: '500',
             }}
           >
-            <i className="fa fa-home" style={{ fontSize: '16px', color: '#666' }}></i>
+            <i className="fa fa-home" style={{ fontSize: '16px', color: uiColors.text.secondary }}></i>
             Home
           </li>
         </ul>
@@ -199,7 +200,7 @@ export default function DashboardPage() {
             className="box"
             sx={{
               marginBottom: '20px',
-              backgroundColor: '#ffffff',
+              backgroundColor: uiColors.chart.background,
               borderRadius: '0px',
             }}
           >
@@ -207,7 +208,7 @@ export default function DashboardPage() {
               className="box-content"
               sx={{
                 padding: '20px',
-                backgroundColor: '#ffffff',
+                backgroundColor: uiColors.chart.background,
               }}
             >
               {/* Alert message */}
@@ -215,11 +216,11 @@ export default function DashboardPage() {
                 <Box
                   sx={{
                     marginBottom: '20px',
-                    backgroundColor: '#f8d7da',
-                    border: '1px solid #f5c6cb',
+                    backgroundColor: uiColors.alert.background,
+                    border: `1px solid ${uiColors.alert.border}`,
                     borderRadius: '4px',
                     padding: '12px 16px',
-                    color: '#721c24',
+                    color: uiColors.alert.text,
                   }}
                 >
                   <p id="alertMessageTag" style={{ margin: 0, fontSize: '13px' }}>
@@ -242,14 +243,13 @@ export default function DashboardPage() {
                     <Box
                       className="chartBox"
                       sx={{
-                        background: '#ffffff',
-                        border: '1px solid #e0e0e0',
-                        borderRadius: '0px',
+                        background: uiColors.chart.background,
                         padding: '20px',
                         height: '100%',
                         display: 'flex',
                         flexDirection: 'column',
                         minHeight: '400px',
+                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
                       }}
                       title="Overall login trend graph"
                     >
@@ -260,7 +260,7 @@ export default function DashboardPage() {
                           margin: '0 0 20px 0',
                           fontSize: '16px',
                           fontWeight: 600,
-                          color: '#2c6aa0',
+                          color: uiColors.chart.title,
                           whiteSpace: 'nowrap',
                         }}
                       >
@@ -287,14 +287,13 @@ export default function DashboardPage() {
                   <Box
                     className="chartBox"
                     sx={{
-                      background: '#ffffff',
-                      border: '1px solid #e0e0e0',
-                      borderRadius: '0px',
+                      background: uiColors.chart.background,
                       padding: '20px',
                       height: '100%',
                       display: 'flex',
                       flexDirection: 'column',
                       minHeight: '400px',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
                     }}
                     title="New Enrollment/Unenrollment graph"
                   >
@@ -305,7 +304,7 @@ export default function DashboardPage() {
                         margin: '0 0 20px 0',
                         fontSize: '16px',
                         fontWeight: 600,
-                        color: '#2c6aa0',
+                        color: uiColors.chart.title,
                         whiteSpace: 'nowrap',
                       }}
                     >

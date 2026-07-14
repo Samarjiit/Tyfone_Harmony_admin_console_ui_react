@@ -5,6 +5,7 @@ import { GlobalStyles, StyledEngineProvider } from '@mui/material';
 import App from './App';
 import { TenantProvider } from './context/TenantContext';
 import { AuthProvider } from './context/AuthContext';
+import { uiColors } from './constants/colors';
 
 /**
  * injectFirst puts all MUI/emotion styles at the TOP of <head>, so the
@@ -24,8 +25,8 @@ createRoot(document.getElementById('root')!).render(
           body: {
             fontFamily: "'Open Sans', Helvetica, Arial, sans-serif",
             fontSize: '13px',
-            backgroundColor: '#f5f6f8',
-            color: '#333',
+            backgroundColor: uiColors.background.page,
+            color: uiColors.text.primary,
           },
           '@keyframes spin': {
             to: { transform: 'rotate(360deg)' },

@@ -7,6 +7,7 @@
 import { Box, CircularProgress } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
+import { chartColors, uiColors, tooltipColors } from '../constants/colors';
 
 interface EnrollmentChartData {
   dates: string[];
@@ -35,10 +36,10 @@ export function EnrollmentTrendChart({ data }: EnrollmentTrendChartProps) {
     const option: echarts.EChartsOption = {
       tooltip: {
         trigger: 'axis',
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        backgroundColor: tooltipColors.background,
         borderColor: 'transparent',
         textStyle: {
-          color: '#fff',
+          color: tooltipColors.text,
           fontSize: 12,
         },
         formatter: (params: any) => {
@@ -61,23 +62,23 @@ export function EnrollmentTrendChart({ data }: EnrollmentTrendChartProps) {
       xAxis: {
         type: 'category',
         name: 'Date',
-        nameTextStyle: { color: '#666', fontSize: 12, fontWeight: 'normal' },
+        nameTextStyle: { color: uiColors.text.secondary, fontSize: 12, fontWeight: 'normal' },
         nameLocation: 'middle',
         nameGap: 25,
         data: data.dates,
-        axisLine: { lineStyle: { color: '#ddd' } },
-        axisLabel: { show: true, fontSize: 12, color: '#666' },
+        axisLine: { lineStyle: { color: uiColors.grid.axisLine } },
+        axisLabel: { show: true, fontSize: 12, color: uiColors.text.secondary },
         splitLine: { show: false },
       },
       yAxis: {
         type: 'value',
         name: 'No. of New/Unenrollments',
-        nameTextStyle: { color: '#666', fontSize: 12, fontWeight: 'normal' },
+        nameTextStyle: { color: uiColors.text.secondary, fontSize: 12, fontWeight: 'normal' },
         nameLocation: 'middle',
         nameGap: 50,
         axisLine: { show: false },
-        axisLabel: { show: true, fontSize: 12, color: '#666' },
-        splitLine: { lineStyle: { color: '#f0f0f0' } },
+        axisLabel: { show: true, fontSize: 12, color: uiColors.text.secondary },
+        splitLine: { lineStyle: { color: uiColors.grid.splitLine } },
         min: 0,
       },
       series: [
@@ -85,8 +86,8 @@ export function EnrollmentTrendChart({ data }: EnrollmentTrendChartProps) {
           name: 'New Enrollments',
           type: 'line',
           data: data.enrollments,
-          lineStyle: { color: '#008C96', width: 2 },
-          itemStyle: { color: '#008C96' },
+          lineStyle: { color: chartColors.enrollmentTrend.newEnrollments, width: 2 },
+          itemStyle: { color: chartColors.enrollmentTrend.newEnrollments },
           symbolSize: 4,
           smooth: false,
         },
@@ -94,8 +95,8 @@ export function EnrollmentTrendChart({ data }: EnrollmentTrendChartProps) {
           name: 'Unenrollments',
           type: 'line',
           data: data.unenrollments,
-          lineStyle: { color: '#DC3545', width: 2 },
-          itemStyle: { color: '#DC3545' },
+          lineStyle: { color: chartColors.enrollmentTrend.unenrollments, width: 2 },
+          itemStyle: { color: chartColors.enrollmentTrend.unenrollments },
           symbolSize: 4,
           smooth: false,
         },
@@ -185,7 +186,7 @@ export function EnrollmentTrendLegend() {
             width: '12px',
             height: '12px',
             borderRadius: '50%',
-            backgroundColor: '#008C96',
+            backgroundColor: chartColors.enrollmentTrend.newEnrollments,
             flexShrink: 0,
           }}
         />
@@ -204,7 +205,7 @@ export function EnrollmentTrendLegend() {
             width: '12px',
             height: '12px',
             borderRadius: '50%',
-            backgroundColor: '#DC3545',
+            backgroundColor: chartColors.enrollmentTrend.unenrollments,
             flexShrink: 0,
           }}
         />
