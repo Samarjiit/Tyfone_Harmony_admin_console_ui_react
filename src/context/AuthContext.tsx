@@ -48,7 +48,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const loadSessionContext = useCallback(async (): Promise<boolean> => {
     const ctx = await authService.probeSession();
     if (ctx.loggedIn) {
-      setUser({ username: ctx.username ?? '', features: ctx.features });
+      setUser({
+        username: ctx.username ?? '',
+        firstname: ctx.firstname ?? '',
+        lastname: ctx.lastname ?? '',
+        emailAddress: ctx.emailAddress ?? '',
+        mobileno: ctx.mobileno ?? '',
+        roleName: ctx.roleName ?? '',
+        roleSlug: ctx.roleSlug ?? '',
+        features: ctx.features,
+        enrollmentDate: ctx.enrollmentDate,
+        timezone: ctx.timezone,
+      });
       setFeatures(ctx.features);
       setBuildVersion(ctx.buildVersion);
       setStage('authenticated');

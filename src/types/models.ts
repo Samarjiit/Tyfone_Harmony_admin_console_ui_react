@@ -67,5 +67,13 @@ export type AuthStage =
 
 export interface AuthUser {
   username: string;
+  firstname: string;
+  lastname: string;
+  emailAddress: string;
+  mobileno: string;
+  roleName: string;
+  roleSlug: string;
   features: number[];
+  enrollmentDate?: string;
+  timezone?: string;
 }
