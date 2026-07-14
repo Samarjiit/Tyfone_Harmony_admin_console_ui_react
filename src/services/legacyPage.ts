@@ -151,6 +151,8 @@ export interface DashboardContext {
   features: number[];
   /** admin display name if present in the header profile popover */
   username: string | null;
+  /** build version rendered in footer.jsp ("v${sessionScope.buildVersion}") */
+  buildVersion: string | null;
   loggedIn: boolean;
 }
 
@@ -168,7 +170,7 @@ export async function fetchDashboardContext(): Promise<DashboardContext> {
   if (token) setCsrfToken(token);
 
   if (/session-timeout|\/login(\?|$)/.test(finalUrl)) {
-    return { features: [], username: null, loggedIn: false };
+    return { features: [], username: null, buildVersion: null, loggedIn: false };
   }
   // JSTL renders Set<Integer> as "[101, 102, 115]"
   const featMatch = /(?:var\s+features|var\s+featureList)\s*=\s*\[([0-9,\s]*)\]/.exec(html);
@@ -183,8 +185,12 @@ export async function fetchDashboardContext(): Promise<DashboardContext> {
   const username =
     doc.querySelector('#userName, .username, [id*="adminName"]')?.textContent?.trim() || null;
 
+  // footer.jsp renders "Powered by Tyfone Inc. v${buildVersion}"
+  const versionMatch = /Powered by Tyfone Inc\.?[\s\S]{0,40}?v([\d][\w.]*)/i.exec(html);
+  const buildVersion = versionMatch ? versionMatch[1] : null;
+
   // A rendered dashboard without a session would have redirected; if we got
   // markup that looks like the login page, treat as logged out.
   const loggedIn = !doc.getElementById('formlogin');
-  return { features, username, loggedIn };
+  return { features, username, buildVersion, loggedIn };
 }

@@ -35,9 +35,14 @@ interface LoginLayoutProps {
    * (nesting a second form inside it renders as a doubled card).
    */
   formProps?: FormHTMLAttributes<HTMLFormElement>;
+  /**
+   * "Admin Console" heading — shown on login.jsp; enter_otp.jsp renders only
+   * the logo above the divider, so the OTP page passes false.
+   */
+  showTitle?: boolean;
 }
 
-export default function LoginLayout({ children, formProps }: LoginLayoutProps) {
+export default function LoginLayout({ children, formProps, showTitle = true }: LoginLayoutProps) {
   const { tenant, asset, loading, error } = useTenant();
 
   useEffect(() => {
@@ -75,16 +80,17 @@ export default function LoginLayout({ children, formProps }: LoginLayoutProps) {
               <img
                 className="image"
                 src={asset(TENANT_ASSETS.loginLogo)}
-                width="100%"
                 alt={tenant.bankName || 'Bank logo'}
               />
             ) : (
               <Box className="logo-fallback" sx={sx.logoFallback}>{error ?? 'Admin Console'}</Box>
             )}
           </Box>
-          <div className="col-md-12">
-            <h3 className="line-height-4px">Admin Console</h3>
-          </div>
+          {showTitle && (
+            <div className="col-md-12">
+              <h3 className="line-height-4px">Admin Console</h3>
+            </div>
+          )}
         </div>
         <Box component="hr" className="hrclas" sx={sx.hrclas} />
         {children}

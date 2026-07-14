@@ -72,7 +72,7 @@ const SECTION_ICONS: Record<NavSection['icon'], (color: string) => ReactNode> = 
 };
 
 export default function DashboardLayout() {
-  const { user, features, logout } = useAuth();
+  const { user, features, buildVersion, logout } = useAuth();
   const { tenant, asset } = useTenant();
   const navigate = useNavigate();
   const location = useLocation();
@@ -225,9 +225,16 @@ export default function DashboardLayout() {
 
       {/* ================= Body: drawer + content ================= */}
       <Box sx={sx.shellBody}>
-        {/* Sidebar (others/sidebar.jsp) */}
-        {drawerOpen && (
-          <Box component="nav" id="sidebar" className="sidebar" sx={sx.sidebar}>
+        {/* Sidebar (others/sidebar.jsp) — width animates 300px <-> 0 like the
+            JSP collapse; own scrollbar keeps every item reachable */}
+        <Box
+          component="nav"
+          id="sidebar"
+          className="sidebar"
+          sx={{ ...sx.sidebarOuter, width: drawerOpen ? '300px' : '0px' }}
+          aria-hidden={!drawerOpen}
+        >
+          <Box sx={sx.sidebarInner}>
             <Box component="ul" sx={sx.sidebarList}>
               {NAV_SECTIONS.filter((s) => isVisible(features, s.feature)).map((section) => {
                 const children =
@@ -305,28 +312,32 @@ export default function DashboardLayout() {
               })}
             </Box>
           </Box>
-        )}
+        </Box>
 
         {/* Main content */}
         <Box component="main" sx={sx.shellMain}>
           <Outlet />
-          <Box component="footer" sx={sx.dashboardFooter}>
-            Powered by Tyfone Inc.
-          </Box>
         </Box>
       </Box>
 
-      {/* Logout confirm modal (footer.jsp #logoutModal) */}
+      {/* Footer bar (footer.jsp): dark slate, full width */}
+      <Box component="footer" sx={sx.footerBar}>
+        © {new Date().getFullYear()} Powered by Tyfone Inc.
+        {buildVersion && <span>v{buildVersion}</span>}
+      </Box>
+
+      {/* Logout confirm modal (footer.jsp #logoutModal): no title, Cancel/OK */}
       {logoutConfirm && (
         <Box className="modal-backdrop" sx={sx.modalBackdrop} role="dialog" aria-modal="true">
           <Box className="modal-card" sx={sx.modalCard}>
-            <h4>Logout</h4>
             <p>Are you sure you want to logout?</p>
+            {/* no .btn classes here: tenant bank.css .btn rules would strip
+                the border/background these buttons need to match the JSP */}
             <Box className="modal-actions" sx={sx.modalActions}>
               <Box
                 component="button"
-                className="btn"
-                sx={sx.btn}
+                type="button"
+                sx={sx.modalCancelBtn}
                 onClick={() => setLogoutConfirm(false)}
                 disabled={loggingOut}
               >
@@ -334,12 +345,12 @@ export default function DashboardLayout() {
               </Box>
               <Box
                 component="button"
-                className="btn btn-primary"
-                sx={{ ...sx.btn, ...sx.btnPrimary, backgroundColor: brandColor }}
+                type="button"
+                sx={{ ...sx.modalOkBtn, backgroundColor: brandColor, borderColor: brandColor }}
                 onClick={handleLogout}
                 disabled={loggingOut}
               >
-                {loggingOut ? 'Logging out…' : 'Logout'}
+                {loggingOut ? '…' : 'OK'}
               </Box>
             </Box>
           </Box>

@@ -26,6 +26,8 @@ interface AuthContextValue {
   stage: AuthStage;
   user: AuthUser | null;
   features: number[];
+  /** backend build version from footer.jsp (e.g. "1.2"), for footer parity */
+  buildVersion: string | null;
   sessionExpired: boolean;
   login: (username: string, password: string) => Promise<authService.LoginResult>;
   submitOtp: (otp: string) => Promise<authService.LoginResult>;
@@ -40,6 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [stage, setStage] = useState<AuthStage>('unknown');
   const [user, setUser] = useState<AuthUser | null>(null);
   const [features, setFeatures] = useState<number[]>([]);
+  const [buildVersion, setBuildVersion] = useState<string | null>(null);
   const [sessionExpired, setSessionExpired] = useState(false);
 
   const loadSessionContext = useCallback(async (): Promise<boolean> => {
@@ -47,6 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (ctx.loggedIn) {
       setUser({ username: ctx.username ?? '', features: ctx.features });
       setFeatures(ctx.features);
+      setBuildVersion(ctx.buildVersion);
       setStage('authenticated');
       return true;
     }
@@ -103,6 +107,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     stage,
     user,
     features,
+    buildVersion,
     sessionExpired,
     login,
     submitOtp,

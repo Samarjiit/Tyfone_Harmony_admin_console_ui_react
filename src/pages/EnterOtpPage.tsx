@@ -46,9 +46,12 @@ export default function EnterOtpPage() {
   };
 
   return (
-    <LoginLayout formProps={{ id: 'formloginsubmitotp', onSubmit: handleSubmit, noValidate: true }}>
+    <LoginLayout
+      showTitle={false}
+      formProps={{ id: 'formloginsubmitotp', onSubmit: handleSubmit, noValidate: true }}
+    >
       <Box component="p" className="otp-instructions" sx={sx.otpInstructions}>
-        A one-time passcode has been sent to your registered contact. Enter it below to continue.
+        Enter the One-Time-Passcode sent to you.
       </Box>
       {info && (
         <Box component="p" className="alert-success-text" sx={sx.alertSuccessText}>
@@ -63,14 +66,26 @@ export default function EnterOtpPage() {
           inputMode="numeric"
           className="form-control"
           sx={sx.formControl}
-          placeholder="One-Time Passcode"
           aria-label="Enter OTP"
           autoFocus
           value={otp}
           onChange={(e) => setOtp(e.target.value)}
         />
       </Box>
-      <Box className="btnspace" sx={sx.btnspace}>
+      <Box sx={sx.otpResendRow}>
+        <span>Did not receive OTP?</span>
+        <Box
+          component="a"
+          id="resendOTPLink"
+          className="resend-link"
+          sx={sx.resendLink}
+          onClick={handleResend}
+          role="button"
+        >
+          Resend OTP
+        </Box>
+      </Box>
+      <Box className="btnspace" sx={{ ...sx.btnspace }}>
         <div className="controls">
           <Box
             component="button"
@@ -82,18 +97,6 @@ export default function EnterOtpPage() {
             {submitting ? 'Verifying…' : 'Submit'}
           </Box>
         </div>
-        <br />
-        <Box
-          component="a"
-          id="resendOTPLink"
-          className="resend-link"
-          sx={sx.resendLink}
-          onClick={handleResend}
-          role="button"
-        >
-          Resend OTP
-        </Box>
-        <br />
         {error && (
           <Box component="label" className="error" id="errorMessage" sx={sx.errorLabel}>
             {error}

@@ -38,34 +38,42 @@ export const spinner = {
 
 /* ---------- login (fallbacks; backend login.min.css/bank_login.css win) ---------- */
 
+// The backend login.min.css puts `padding: 80px 0 !important` on the
+// .login-page body — the wrapper height compensates for those 160px so the
+// card sits in the exact center of the VIEWPORT, not of an overflowing box.
 export const loginWrapper = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  minHeight: '100vh',
-  padding: '16px',
+  minHeight: 'calc(100vh - 160px)',
+  padding: '0 16px',
 };
 
 export const loginCard = {
   background: '#fff',
-  width: '380px',
+  width: '452px',
   maxWidth: '94vw',
-  padding: '28px 30px',
-  borderRadius: '4px',
-  boxShadow: '0 2px 14px rgba(0, 0, 0, 0.18)',
-  // was `.login-card h3` — nested selector keeps the same specificity
+  padding: '36px 40px 40px',
+  borderRadius: '8px',
+  boxShadow: '0 2px 18px rgba(0, 0, 0, 0.12)',
+  // "Admin Console" heading — JSP renders it left-aligned, large, muted gray
   '& h3': {
-    margin: '8px 0 4px',
+    margin: '18px 0 6px',
     fontWeight: 400,
-    textAlign: 'center',
+    fontSize: '30px',
+    color: '#44505c',
+    textAlign: 'left',
   },
 };
 
 export const logoImage = {
-  // was `.logo-image img.image`
+  // logo renders centered at natural size (not stretched), like the JSP card
   '& img.image': {
     display: 'block',
-    maxWidth: '100%',
+    maxWidth: '280px',
+    maxHeight: '115px',
+    width: 'auto',
+    margin: '0 auto',
   },
 };
 
@@ -93,33 +101,38 @@ export const formGroup = {
 export const formControl = {
   display: 'block',
   width: '100%',
-  padding: '8px 10px',
-  fontSize: '13px',
-  border: '1px solid #ccc',
-  borderRadius: '3px',
+  padding: '14px 16px',
+  fontSize: '16px',
+  color: '#3f4a56',
+  border: '1px solid #d4dae0',
+  borderRadius: '6px',
   background: '#fff',
+  '&::placeholder': { color: '#8a97a3' },
   '&:focus': {
     outline: 'none',
-    borderColor: '#2c6aa0',
+    borderColor: '#7aa7d9',
+    boxShadow: '0 0 0 3px rgba(60, 120, 200, 0.18)',
   },
 };
 
-// was `.password-group .firstTogglePassword` / `.password-group input` —
-// applied on the .password-group wrapper so specificity matches the old rules.
+// "Show" toggle sits INSIDE the password field, right side, bold dark text —
+// matching the JSP rendering of show_hide_password.css.
 export const passwordGroup = {
   '& .firstTogglePassword': {
     position: 'absolute',
-    right: '10px',
-    top: '8px',
+    right: '16px',
+    top: '50%',
+    transform: 'translateY(-50%)',
     margin: 0,
-    fontSize: '12px',
-    color: '#2c6aa0',
+    fontSize: '15px',
+    fontWeight: 700,
+    color: '#212529',
     cursor: 'pointer',
     userSelect: 'none',
     zIndex: 1,
   },
   '& input': {
-    paddingRight: '46px',
+    paddingRight: '64px',
   },
 };
 
@@ -150,10 +163,17 @@ export const btnPrimary = {
 
 // "btn btn-primary form-control" submit buttons — spread order mirrors the
 // rule order in the old stylesheet so the same declarations win.
+// Sized to the JSP login button: tall, 6px radius, 18px white text.
 export const primarySubmitBtn = {
   ...formControl,
   ...btn,
   ...btnPrimary,
+  padding: '13px 16px',
+  fontSize: '18px',
+  fontWeight: 500,
+  borderRadius: '6px',
+  backgroundColor: '#22457f',
+  borderColor: '#22457f',
 };
 
 export const errorLabel = {
@@ -171,17 +191,31 @@ export const alertSuccessText = {
   textAlign: 'center',
 };
 
+// OTP page (enter_otp.jsp): left-aligned instruction, "Did not receive OTP?"
+// row with the Resend link beside it.
 export const otpInstructions = {
-  textAlign: 'center',
-  color: '#555',
-  marginBottom: '14px',
+  textAlign: 'left',
+  color: '#3f4a56',
+  fontSize: '16px',
+  lineHeight: 1.45,
+  margin: '6px 0 16px',
+};
+
+export const otpResendRow = {
+  display: 'flex',
+  alignItems: 'baseline',
+  gap: '10px',
+  margin: '14px 0 18px',
+  fontSize: '16px',
+  color: '#3f4a56',
 };
 
 export const resendLink = {
   color: '#2c6aa0',
   cursor: 'pointer',
-  textDecoration: 'underline',
-  fontSize: '12.5px',
+  textDecoration: 'none',
+  fontSize: '13px',
+  '&:hover': { textDecoration: 'underline' },
 };
 
 export const centeredText = {
@@ -414,12 +448,34 @@ export const shellBody = {
   alignItems: 'stretch',
 };
 
-export const sidebar = {
-  width: '300px',
+/**
+ * Drawer animates open/closed by width (0 <-> 300px), like the JSP sidebar
+ * collapse. Outer box owns the animation + its own scrollbar (sticky under
+ * the 70px navbar, so every menu item is reachable regardless of page
+ * height); inner box keeps a fixed width so labels don't reflow mid-slide.
+ */
+export const sidebarOuter = {
   flexShrink: 0,
+  position: 'sticky',
+  top: '70px',
+  height: 'calc(100vh - 70px)',
   background: '#fff',
-  borderRight: '1px solid #e2e5e9',
+  overflowX: 'hidden',
+  overflowY: 'auto',
+  transition: 'width 0.3s ease',
+  whiteSpace: 'nowrap',
+  // scrollable but with the scrollbar itself hidden, like the JSP sidebar
+  scrollbarWidth: 'none', // Firefox
+  msOverflowStyle: 'none', // legacy Edge/IE
+  '&::-webkit-scrollbar': { display: 'none' }, // Chrome/Safari/new Edge
+};
+
+export const sidebarInner = {
+  width: '300px',
   paddingTop: '10px',
+  paddingBottom: '48px',
+  borderRight: '1px solid #e2e5e9',
+  minHeight: '100%',
 };
 
 export const sidebarList = {
@@ -483,34 +539,109 @@ export const shellMain = {
   padding: '28px 32px 0',
 };
 
-/* ---------- modal ---------- */
+/* ---------- logged-out page (logout.jsp) ---------- */
+
+export const logoutHeaderBand = {
+  background: '#fff',
+  padding: '12px 28px',
+  '& img': { height: '64px', width: 'auto' },
+};
+
+export const logoutBody = {
+  minHeight: 'calc(100vh - 88px)',
+  background: '#f5f6f8',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+};
+
+export const logoutMessage = {
+  borderTop: '1px solid #d9dde2',
+  borderBottom: '1px solid #d9dde2',
+  textAlign: 'center',
+  padding: '34px 16px',
+  fontFamily: "Georgia, 'Times New Roman', serif",
+  fontSize: '24px',
+  fontWeight: 700,
+  color: '#1d1d1d',
+};
+
+export const logoutLoginLink = {
+  display: 'block',
+  textAlign: 'center',
+  marginTop: '38px',
+  fontFamily: "Georgia, 'Times New Roman', serif",
+  fontSize: '25px',
+  color: '#2a5db0',
+  cursor: 'pointer',
+  textDecoration: 'none',
+  '&:hover': { textDecoration: 'underline' },
+};
+
+/* ---------- dashboard footer bar (footer.jsp) ---------- */
+
+export const footerBar = {
+  background: '#5d6d7e',
+  color: 'rgba(255,255,255,0.92)',
+  textAlign: 'center',
+  padding: '15px 12px',
+  fontSize: '15px',
+  '& span': { margin: '0 10px' },
+};
+
+/* ---------- modal (footer.jsp #logoutModal: top-positioned, wide, no title) ---------- */
 
 export const modalBackdrop = {
   position: 'fixed',
   inset: 0,
   background: 'rgba(0, 0, 0, 0.45)',
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   justifyContent: 'center',
+  paddingTop: '110px',
   zIndex: 100,
 };
 
 export const modalCard = {
   background: '#fff',
-  borderRadius: '4px',
-  padding: '20px 24px',
-  width: '340px',
+  borderRadius: '6px',
+  padding: '20px 24px 16px',
+  width: '740px',
   maxWidth: '92vw',
-  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.3)',
-  // was `.modal-card h4`
-  '& h4': {
-    margin: '0 0 10px',
-  },
+  boxShadow: '0 6px 28px rgba(0, 0, 0, 0.3)',
+  fontSize: '15.5px',
+  color: '#333',
+  '& p': { margin: '0 0 4px' },
 };
 
+// Bootstrap .modal-footer look: separator line above the buttons.
 export const modalActions = {
   display: 'flex',
   justifyContent: 'flex-end',
   gap: '10px',
-  marginTop: '18px',
+  marginTop: '16px',
+  paddingTop: '14px',
+  borderTop: '1px solid #dee2e6',
+};
+
+export const modalCancelBtn = {
+  padding: '9px 24px',
+  fontSize: '15px',
+  borderRadius: '6px',
+  cursor: 'pointer',
+  background: '#fff',
+  border: '1px solid #2b5ca8',
+  color: '#2b5ca8',
+  '&[disabled]': { opacity: 0.65, cursor: 'default' },
+};
+
+export const modalOkBtn = {
+  padding: '9px 28px',
+  fontSize: '15px',
+  borderRadius: '6px',
+  cursor: 'pointer',
+  background: '#22457f',
+  border: '1px solid #22457f',
+  color: '#fff',
+  '&[disabled]': { opacity: 0.65, cursor: 'default' },
 };

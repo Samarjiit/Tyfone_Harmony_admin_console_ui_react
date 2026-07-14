@@ -1,32 +1,39 @@
 /**
- * Logout landing — port of login/logout.jsp.
+ * Logged-out landing — port of login/logout.jsp:
+ * white band with the tenant header logo top-left, gray page body, serif
+ * "You have logged out successfully." between horizontal rules, and a serif
+ * "Click here to login again" link. (Design matches the JSP page; navigation
+ * uses the SPA route instead of a full reload.)
  */
 import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
-import LoginLayout from '../layouts/LoginLayout';
+import { useTenant } from '../context/TenantContext';
+import { TENANT_ASSETS } from '../utils/tenant';
 import * as sx from '../styles/sx';
 
 export default function LogoutPage() {
   const navigate = useNavigate();
+  const { tenant, asset } = useTenant();
+
   return (
-    <LoginLayout>
-      <Box component="h4" className="centered-text" sx={sx.centeredText}>
-        You have been logged out
+    <Box>
+      <Box sx={sx.logoutHeaderBand}>
+        {tenant && (
+          <img src={asset(TENANT_ASSETS.headerLogo)} alt={tenant.bankName || 'Bank logo'} />
+        )}
       </Box>
-      <Box component="p" className="centered-text muted" sx={{ ...sx.centeredText, ...sx.muted }}>
-        Thank you for using the Admin Console.
-      </Box>
-      <Box className="btnspace" sx={sx.btnspace}>
+      <Box sx={sx.logoutBody}>
+        <Box sx={sx.logoutMessage}>You have logged out successfully.</Box>
         <Box
-          component="button"
-          type="button"
-          className="btn btn-primary form-control anchorclick"
-          sx={sx.primarySubmitBtn}
+          component="a"
+          role="button"
+          tabIndex={0}
+          sx={sx.logoutLoginLink}
           onClick={() => navigate('/login')}
         >
-          Sign In Again
+          Click here to login again
         </Box>
       </Box>
-    </LoginLayout>
+    </Box>
   );
 }
