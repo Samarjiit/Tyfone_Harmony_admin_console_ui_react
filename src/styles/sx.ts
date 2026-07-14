@@ -15,7 +15,11 @@
  * All values are explicit px strings: bare numbers in sx shorthand keys
  * (padding/margin/gap/borderRadius) would be multiplied by the theme, which
  * would change the rendered output.
+ *
+ * Colors are centralized in src/constants/colors.ts for global management.
  */
+
+import { uiColors, formColors, loaderColors } from '../constants/colors';
 
 /* ---------- boot loader ---------- */
 
@@ -30,8 +34,8 @@ export const bootLoader = {
 export const spinner = {
   width: '36px',
   height: '36px',
-  border: '4px solid #d5d9df',
-  borderTopColor: '#2c6aa0',
+  border: `4px solid ${loaderColors.border}`,
+  borderTopColor: loaderColors.activeBorder,
   borderRadius: '50%',
   animation: 'spin 0.9s linear infinite',
 };
@@ -50,7 +54,7 @@ export const loginWrapper = {
 };
 
 export const loginCard = {
-  background: '#fff',
+  background: uiColors.background.card,
   width: '452px',
   maxWidth: '94vw',
   padding: '36px 40px 40px',
@@ -61,7 +65,7 @@ export const loginCard = {
     margin: '18px 0 6px',
     fontWeight: 400,
     fontSize: '30px',
-    color: '#44505c',
+    color: uiColors.text.header,
     textAlign: 'left',
   },
 };
@@ -81,14 +85,14 @@ export const logoFallback = {
   textAlign: 'center',
   fontSize: '18px',
   padding: '12px 0',
-  color: '#555',
+  color: uiColors.text.light,
 };
 
 export const hrclas = {
   // `hr&` compiles to `hr.<class>` — same specificity as the old `hr.hrclas`
   'hr&': {
     border: 0,
-    borderTop: '1px solid #ddd',
+    borderTop: `1px solid ${uiColors.border.default}`,
     margin: '12px 0 18px',
   },
 };

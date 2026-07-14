@@ -36,8 +36,9 @@ import { TENANT_ASSETS, tenantResourceUrl } from '../utils/tenant';
 import { NAV_SECTIONS, isVisible, type NavSection } from '../utils/navigation';
 import HeaderSearch from '../components/HeaderSearch';
 import * as sx from '../styles/sx';
+import { uiColors } from '../constants/colors';
 
-const DEFAULT_BRAND = '#22457f';
+const DEFAULT_BRAND = uiColors.sidebar.brand;
 
 function injectOnce(href: string, id: string) {
   if (document.getElementById(id)) return;
@@ -265,13 +266,13 @@ export default function DashboardLayout() {
                     >
                       <Box component="span" sx={sx.sidebarItemInner}>
                         {SECTION_ICONS[section.icon](
-                          isActive && !section.children ? '#fff' : '#5f6b7a'
+                          isActive && !section.children ? uiColors.sidebar.textActive : uiColors.sidebar.text
                         )}
                         <Box
                           component="span"
                           sx={{
                             ...sx.sidebarItemLabel,
-                            color: isActive && !section.children ? '#fff' : '#5f6b7a'
+                            color: isActive && !section.children ? uiColors.sidebar.textActive : uiColors.sidebar.text
                           }}
                         >
                           {section.label}
@@ -279,9 +280,9 @@ export default function DashboardLayout() {
                       </Box>
                       {section.children &&
                         (isOpen ? (
-                          <KeyboardArrowDownIcon sx={{ fontSize: 20 }} htmlColor="#5f6b7a" />
+                          <KeyboardArrowDownIcon sx={{ fontSize: 20 }} htmlColor={uiColors.sidebar.text} />
                         ) : (
-                          <KeyboardArrowRightIcon sx={{ fontSize: 20 }} htmlColor="#5f6b7a" />
+                          <KeyboardArrowRightIcon sx={{ fontSize: 20 }} htmlColor={uiColors.sidebar.text} />
                         ))}
                     </Box>
 
