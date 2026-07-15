@@ -80,7 +80,7 @@ export default function DashboardLayout() {
 
   const [drawerOpen, setDrawerOpen] = useState(true);
   const [openSection, setOpenSection] = useState<string | null>(null);
-  const [brandColor, setBrandColor] = useState(DEFAULT_BRAND);
+  const [brandColor, setBrandColor] = useState<string>(DEFAULT_BRAND);
   const [profileOpen, setProfileOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [logoutConfirm, setLogoutConfirm] = useState(false);
@@ -96,6 +96,18 @@ export default function DashboardLayout() {
     }, 350);
     return () => window.clearTimeout(t);
   }, [tenant]);
+
+  // Keep the section owning the current route expanded (JSP sidebar.js does
+  // the same via localStorage view_name) so its highlight survives reloads
+  // and deep links.
+  useEffect(() => {
+    const owner = NAV_SECTIONS.find((s) =>
+      s.children?.some((c) => c.route === location.pathname)
+    );
+    // Navigating to a direct route (e.g. Home) collapses any expanded group,
+    // so exactly one sidebar item carries the highlight at a time.
+    setOpenSection(owner ? owner.id : null);
+  }, [location.pathname]);
 
   const handleLogout = async () => {
     setLoggingOut(true);
@@ -227,11 +239,13 @@ export default function DashboardLayout() {
       {/* ================= Body: drawer + content ================= */}
       <Box sx={sx.shellBody}>
         {/* Sidebar (others/sidebar.jsp) — width animates 300px <-> 0 like the
-            JSP collapse; own scrollbar keeps every item reachable */}
+            JSP collapse; own scrollbar keeps every item reachable.
+            NOTE: deliberately NOT id="sidebar"/.sidebar — tenant bank.css has
+            `@media (max-width:979px){ #sidebar{ background:#248dc1 !important }}`
+            which would repaint the drawer blue on small screens. */}
         <Box
           component="nav"
-          id="sidebar"
-          className="sidebar"
+          id="app-sidebar"
           sx={{ ...sx.sidebarOuter, width: drawerOpen ? '300px' : '0px' }}
           aria-hidden={!drawerOpen}
         >
@@ -242,10 +256,20 @@ export default function DashboardLayout() {
                   section.children?.filter((c) => isVisible(features, c.feature)) ?? [];
                 if (section.children && children.length === 0) return null;
 
-                const isActive =
-                  section.route === location.pathname ||
-                  children.some((c) => c.route === location.pathname);
+                const hasActiveChild = children.some((c) => c.route === location.pathname);
                 const isOpen = openSection === section.id;
+                // Exactly ONE item carries the navy highlight at a time:
+                // an expanded group takes precedence; only when nothing is
+                // expanded does the active route (group owner or direct item)
+                // hold it. Expanding "Manage Businesses" while on Home
+                // therefore un-highlights Home.
+                const anyExpanded = openSection !== null;
+                const highlighted = section.children
+                  ? isOpen || (!anyExpanded && hasActiveChild)
+                  : !anyExpanded && section.route === location.pathname;
+                const itemColor = highlighted
+                  ? uiColors.sidebar.textActive
+                  : uiColors.sidebar.text;
 
                 return (
                   <Box component="li" key={section.id} sx={sx.sidebarItemLi}>
@@ -255,7 +279,7 @@ export default function DashboardLayout() {
                       tabIndex={0}
                       sx={{
                         ...sx.sidebarItem,
-                        ...(isActive && !section.children
+                        ...(highlighted
                           ? { ...sx.sidebarItemActive, backgroundColor: brandColor }
                           : {})
                       }}
@@ -265,14 +289,12 @@ export default function DashboardLayout() {
                       }}
                     >
                       <Box component="span" sx={sx.sidebarItemInner}>
-                        {SECTION_ICONS[section.icon](
-                          isActive && !section.children ? uiColors.sidebar.textActive : uiColors.sidebar.text
-                        )}
+                        {SECTION_ICONS[section.icon](itemColor)}
                         <Box
                           component="span"
                           sx={{
                             ...sx.sidebarItemLabel,
-                            color: isActive && !section.children ? uiColors.sidebar.textActive : uiColors.sidebar.text
+                            color: itemColor
                           }}
                         >
                           {section.label}
@@ -280,9 +302,9 @@ export default function DashboardLayout() {
                       </Box>
                       {section.children &&
                         (isOpen ? (
-                          <KeyboardArrowDownIcon sx={{ fontSize: 20 }} htmlColor={uiColors.sidebar.text} />
+                          <KeyboardArrowDownIcon sx={{ fontSize: 20 }} htmlColor={itemColor} />
                         ) : (
-                          <KeyboardArrowRightIcon sx={{ fontSize: 20 }} htmlColor={uiColors.sidebar.text} />
+                          <KeyboardArrowRightIcon sx={{ fontSize: 20 }} htmlColor={itemColor} />
                         ))}
                     </Box>
 
@@ -297,7 +319,7 @@ export default function DashboardLayout() {
                               sx={{
                                 ...sx.sidebarSubItem,
                                 ...(location.pathname === child.route
-                                  ? { color: brandColor, fontWeight: 600 }
+                                  ? sx.sidebarSubItemActive
                                   : {})
                               }}
                               onClick={() => navigate(child.route)}
