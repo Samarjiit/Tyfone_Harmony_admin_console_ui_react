@@ -269,18 +269,18 @@ export async function fetchDashboardContext(): Promise<DashboardContext> {
 
         // Extract enrollment date and timezone from span element
         // JSP renders: <span id="enrollmentDateSpan">${myprofile.user.enrolmentDateString} ${timeZone}</span>
-        // Format: "Jan 15, 2024 EST"
+        // Format: "Jan 15, 2024 EST" or "Jan 5, 2016 at 08:26:07 AM PST"
         const spanText = textOfOrNull(profileDoc, 'enrollmentDateSpan');
         if (spanText) {
-          // Extract date part: "Jan 15, 2024"
-          const dateMatch = spanText.match(/^([^A-Z]*(?:[A-Z]{3})?)/);
-          if (dateMatch) {
-            enrollmentDate = dateMatch[1].trim();
-          }
-          // Extract timezone part: "EST" or "EDT"
-          const tzMatch = spanText.match(/([A-Z]{3,4})$/);
-          if (tzMatch) {
-            timezone = tzMatch[1];
+          // Split by last whitespace to separate date from timezone
+          // Timezone is always the last token (3-4 uppercase letters)
+          const parts = spanText.match(/^(.+)\s+([A-Z]{3,4})$/);
+          if (parts) {
+            enrollmentDate = parts[1].trim();
+            timezone = parts[2];
+          } else {
+            // Fallback: if no timezone found, treat whole string as date
+            enrollmentDate = spanText.trim();
           }
         }
 

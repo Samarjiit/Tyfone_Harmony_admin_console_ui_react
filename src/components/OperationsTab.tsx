@@ -1,9 +1,10 @@
 /**
  * Operations/Accounts Tab — displays user transaction history
+ * Uses MUI form components for consistency with the project's form library
  * Allows filtering by transaction type and date range
- * Matches JSP layout exactly: Bootstrap grid, form-group rows
  */
 import { useState, useEffect } from 'react';
+import { Box, TextField, Select, MenuItem, Button, Alert } from '@mui/material';
 import { http } from '../services/http';
 import { uiColors, formColors } from '../constants/colors';
 
@@ -31,7 +32,7 @@ export default function OperationsTab({ myProfileConfig }: OperationsTabProps) {
       const year = d.getFullYear();
       const month = String(d.getMonth() + 1).padStart(2, '0');
       const day = String(d.getDate()).padStart(2, '0');
-      return `${month}/${day}/${year}`;
+      return `${year}-${month}-${day}`;
     };
 
     setStartDate(formatDate(startDateObj));
@@ -113,165 +114,153 @@ export default function OperationsTab({ myProfileConfig }: OperationsTabProps) {
     }
   };
 
+  const textFieldSx = {
+    '& .MuiOutlinedInput-root': {
+      backgroundColor: '#ffffff',
+      '& fieldset': {
+        borderColor: formColors.inputBorder,
+      },
+      '&:hover fieldset': {
+        borderColor: formColors.inputBorder,
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#7aa7d9',
+        borderWidth: '1px',
+      },
+    },
+    '& .MuiOutlinedInput-input': {
+      color: uiColors.text.primary,
+      fontSize: '13px',
+      padding: '10px 12px',
+    },
+  };
+
   return (
-    <div className="box-content" style={{ padding: '10px 0' }}>
+    <Box sx={{ padding: '10px 0' }}>
       {/* Search Form */}
-      <form className="form-horizontal">
+      <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {/* Transaction Type */}
-        <div className="row padding-bottom-0">
-          <label id="transactionTypeLabel" className="col-sm-2 control-label font-bold" style={{ fontWeight: 600, lineHeight: '3' }}>
-            Transaction Type
-          </label>
-          <div className="col-sm-3">
-            <select
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+          <Box sx={{ width: '150px', minWidth: '150px' }}>
+            <label style={{ fontWeight: 600, fontSize: '13px', color: uiColors.text.primary }}>
+              Transaction Type
+            </label>
+          </Box>
+          <Box sx={{ width: '300px' }}>
+            <Select
               id="transactionOptionSelect"
-              className="form-control"
               value={transactionType}
               onChange={(e) => setTransactionType(e.target.value)}
-              style={{
-                backgroundColor: uiColors.background.card,
-                borderColor: formColors.inputBorder,
-                color: uiColors.text.primary,
-                width: 'max-content !important',
-              }}
+              variant="outlined"
+              size="small"
+              sx={textFieldSx}
             >
-              <option value="DELETE_MEMBER_ENROLLMENT">Delete Member Enrollment</option>
-              <option value="ADD_MEMBER_ENROLLMENT">Add Member Enrollment</option>
-              <option value="UPDATE_MEMBER">Update Member</option>
-            </select>
-          </div>
-        </div>
+              <MenuItem value="DELETE_MEMBER_ENROLLMENT">Delete Member Enrollment</MenuItem>
+              <MenuItem value="ADD_MEMBER_ENROLLMENT">Add Member Enrollment</MenuItem>
+              <MenuItem value="UPDATE_MEMBER">Update Member</MenuItem>
+            </Select>
+          </Box>
+        </Box>
 
         {/* Start Date */}
-        <div className="form-group row" id="startDateDiv">
-          <label id="startdaterangeTag" className="col-sm-2 control-label font-bold" style={{ fontWeight: 600, lineHeight: '3' }}>
-            Start Date:
-          </label>
-          <div className="col-sm-3 controls">
-            <input
-              aria-label="enter start date"
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+          <Box sx={{ width: '150px', minWidth: '150px' }}>
+            <label style={{ fontWeight: 600, fontSize: '13px', color: uiColors.text.primary }}>
+              Start Date:
+            </label>
+          </Box>
+          <Box sx={{ width: '300px' }}>
+            <TextField
               id="startDate"
+              aria-label="enter start date"
               type="date"
-              value={startDate.split('/').reverse().join('-')}
-              onChange={(e) => {
-                const [year, month, day] = e.target.value.split('-');
-                setStartDate(`${month}/${day}/${year}`);
-              }}
-              style={{
-                backgroundColor: uiColors.background.card,
-                borderColor: formColors.inputBorder,
-                color: uiColors.text.primary,
-                padding: '6px 12px',
-                borderRadius: '4px',
-                border: `1px solid ${formColors.inputBorder}`,
-                width: '100%',
-              }}
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              sx={textFieldSx}
             />
-          </div>
-          <div>
-            <label className="error nostyle" id="startDateError" style={{ color: formColors.errorText, display: 'none' }}></label>
-          </div>
-        </div>
+          </Box>
+        </Box>
 
         {/* End Date */}
-        <div className="form-group row" id="endDateDiv">
-          <label id="enddaterangeTag" className="col-sm-2 control-label font-bold" style={{ fontWeight: 600, lineHeight: '3' }}>
-            End Date:
-          </label>
-          <div className="col-sm-3 controls">
-            <input
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+          <Box sx={{ width: '150px', minWidth: '150px' }}>
+            <label style={{ fontWeight: 600, fontSize: '13px', color: uiColors.text.primary }}>
+              End Date:
+            </label>
+          </Box>
+          <Box sx={{ width: '300px' }}>
+            <TextField
               id="endDate"
               type="date"
-              value={endDate.split('/').reverse().join('-')}
-              onChange={(e) => {
-                const [year, month, day] = e.target.value.split('-');
-                setEndDate(`${month}/${day}/${year}`);
-              }}
-              style={{
-                backgroundColor: uiColors.background.card,
-                borderColor: formColors.inputBorder,
-                color: uiColors.text.primary,
-                padding: '6px 12px',
-                borderRadius: '4px',
-                border: `1px solid ${formColors.inputBorder}`,
-                width: '100%',
-              }}
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              sx={textFieldSx}
             />
-          </div>
-          <div>
-            <label className="error nostyle" id="endDateError" style={{ color: formColors.errorText, display: 'none' }}></label>
-          </div>
-        </div>
+          </Box>
+        </Box>
 
         {/* Search Button */}
-        <div className="row padding-bottom-0">
-          <label id="noTagLabel" className="col-md-2 control-label"></label>
-          <div className="col-md-3 controls">
-            <button
-              type="button"
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+          <Box sx={{ width: '150px', minWidth: '150px' }}></Box>
+          <Box>
+            <Button
               id="searchTransactionsButton"
-              className="btn btn-primary"
+              type="button"
+              variant="contained"
               onClick={handleSearch}
               disabled={loading}
-              style={{
+              sx={{
                 backgroundColor: uiColors.chart.title,
-                borderColor: uiColors.chart.title,
                 color: '#fff',
-                padding: '6px 12px',
+                textTransform: 'none',
+                padding: '8px 24px',
                 fontSize: '13px',
-                opacity: loading ? 0.6 : 1,
+                fontWeight: 500,
+                '&:hover': {
+                  backgroundColor: '#2a5494',
+                },
+                '&:disabled': {
+                  opacity: 0.6,
+                },
               }}
             >
               {loading ? 'Searching...' : 'Search Transactions'}
-            </button>
-          </div>
-        </div>
-      </form>
+            </Button>
+          </Box>
+        </Box>
+      </Box>
 
       {/* Error Alert */}
       {errorMessage && (
-        <div
-          className="alert alert-danger"
-          style={{
-            marginTop: '20px',
-            marginBottom: '16px',
-            backgroundColor: formColors.errorBackground,
-            borderColor: formColors.errorBorder,
-            color: formColors.errorText,
-          }}
-        >
-          <p style={{ margin: 0, fontSize: '13px' }}>{errorMessage}</p>
-        </div>
+        <Alert severity="error" sx={{ marginTop: '20px', marginBottom: '16px' }}>
+          {errorMessage}
+        </Alert>
       )}
 
       {/* Info Alert */}
       {infoMessage && (
-        <div
-          id="infodiv"
-          className="alert alert-warning"
-          style={{
-            marginTop: '20px',
-            marginBottom: '16px',
-            backgroundColor: '#faebcc',
-            borderColor: '#fad8a5',
-            color: '#8a6d3b',
-          }}
-        >
-          <p style={{ margin: 0, fontSize: '13px' }}>{infoMessage}</p>
-        </div>
+        <Alert severity="warning" sx={{ marginTop: '20px', marginBottom: '16px' }}>
+          {infoMessage}
+        </Alert>
       )}
 
       {/* Transactions Table */}
       {showTable && transactions.length > 0 && (
-        <div id="tableDiv" style={{ marginTop: '20px' }}>
-          <div id="shownTimezoneInfo" className="mt-1">
-            <div className="row" style={{ marginLeft: '0', marginRight: '0' }}>
-              <label style={{ marginLeft: '12px', marginBottom: '0', fontSize: '12px', color: uiColors.text.secondary }}>
-                All dates are in&nbsp;
-              </label>
-              <label id="timezoneText" style={{ fontWeight: 600, marginBottom: '0', fontSize: '12px', color: uiColors.text.secondary }}></label>
-            </div>
-          </div>
+        <Box id="tableDiv" sx={{ marginTop: '20px' }}>
+          <Box id="shownTimezoneInfo" sx={{ marginBottom: '12px' }}>
+            <Box sx={{ display: 'flex', gap: '4px' }}>
+              <span style={{ fontSize: '12px', color: uiColors.text.secondary }}>All dates are in&nbsp;</span>
+              <span id="timezoneText" style={{ fontWeight: 600, fontSize: '12px', color: uiColors.text.secondary }}></span>
+            </Box>
+          </Box>
           <table
             width="100%"
             className="table table-striped table-responsive table-bordered"
@@ -301,8 +290,8 @@ export default function OperationsTab({ myProfileConfig }: OperationsTabProps) {
               ))}
             </tbody>
           </table>
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }
