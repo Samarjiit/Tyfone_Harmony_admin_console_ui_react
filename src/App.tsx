@@ -15,6 +15,7 @@ import EnterOtpPage from './pages/EnterOtpPage';
 import LogoutPage from './pages/LogoutPage';
 import SessionTimeoutPage from './pages/SessionTimeoutPage';
 import DashboardPage from './pages/DashboardPage';
+import EditMyProfilePage from './pages/EditMyProfilePage';
 import ModulePage from './pages/ModulePage';
 import { NAV_SECTIONS } from './utils/navigation';
 
@@ -51,7 +52,7 @@ export default function App() {
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
           {moduleRoutes().map(({ route, title }) => (
-            <Route key={route} path={route} element={<ModulePage title={title} />} />
+            <Route key={route} path={route} element={route === '/my_profile' ? <EditMyProfilePage /> : <ModulePage title={title} />} />
           ))}
         </Route>
       </Route>

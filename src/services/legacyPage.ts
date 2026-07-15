@@ -51,8 +51,18 @@ function inputValue(doc: Document, id: string): string {
   return byName?.value ?? '';
 }
 
+function inputValueOrNull(doc: Document, id: string): string | null {
+  const value = inputValue(doc, id);
+  return value ? value.trim() : null;
+}
+
 function textOf(doc: Document, id: string): string {
   return doc.getElementById(id)?.textContent?.trim() ?? '';
+}
+
+function textOfOrNull(doc: Document, id: string): string | null {
+  const text = textOf(doc, id);
+  return text ? text : null;
 }
 
 function isDashboardUrl(url: string): boolean {
@@ -151,6 +161,22 @@ export interface DashboardContext {
   features: number[];
   /** admin display name if present in the header profile popover */
   username: string | null;
+  /** admin first name */
+  firstname: string | null;
+  /** admin last name */
+  lastname: string | null;
+  /** admin email address */
+  emailAddress: string | null;
+  /** admin mobile number */
+  mobileno: string | null;
+  /** admin role name */
+  roleName: string | null;
+  /** admin role slug */
+  roleSlug: string | null;
+  /** enrollment/created date */
+  enrollmentDate: string | null;
+  /** timezone */
+  timezone: string | null;
   /** build version rendered in footer.jsp ("v${sessionScope.buildVersion}") */
   buildVersion: string | null;
   loggedIn: boolean;
@@ -170,8 +196,22 @@ export async function fetchDashboardContext(): Promise<DashboardContext> {
   if (token) setCsrfToken(token);
 
   if (/session-timeout|\/login(\?|$)/.test(finalUrl)) {
-    return { features: [], username: null, buildVersion: null, loggedIn: false };
+    return {
+      features: [],
+      username: null,
+      firstname: null,
+      lastname: null,
+      emailAddress: null,
+      mobileno: null,
+      roleName: null,
+      roleSlug: null,
+      enrollmentDate: null,
+      timezone: null,
+      buildVersion: null,
+      loggedIn: false,
+    };
   }
+
   // JSTL renders Set<Integer> as "[101, 102, 115]"
   const featMatch = /(?:var\s+features|var\s+featureList)\s*=\s*\[([0-9,\s]*)\]/.exec(html);
   const features = featMatch
@@ -182,7 +222,7 @@ export async function fetchDashboardContext(): Promise<DashboardContext> {
     : [];
 
   const doc = parseHtml(html);
-  const username =
+  let username =
     doc.querySelector('#userName, .username, [id*="adminName"]')?.textContent?.trim() || null;
 
   // footer.jsp renders "Powered by Tyfone Inc. v${buildVersion}"
@@ -192,5 +232,83 @@ export async function fetchDashboardContext(): Promise<DashboardContext> {
   // A rendered dashboard without a session would have redirected; if we got
   // markup that looks like the login page, treat as logged out.
   const loggedIn = !doc.getElementById('formlogin');
-  return { features, username, buildVersion, loggedIn };
+
+  // Try to fetch complete user info from /my_profile API if logged in
+  let firstname: string | null = null;
+  let lastname: string | null = null;
+  let emailAddress: string | null = null;
+  let mobileno: string | null = null;
+  let roleName: string | null = null;
+  let roleSlug: string | null = null;
+  let enrollmentDate: string | null = null;
+  let timezone: string | null = null;
+
+  // Fetch profile data from /my_profile JSP page and extract from rendered HTML
+  // JSP stores profile data (firstname, lastname, email, etc.) in session attributes
+  // These are rendered into the JSP HTML template, so we parse them from there
+  if (loggedIn) {
+    try {
+      const profileRes = await fetch(api('/my_profile'), { credentials: 'include' });
+      if (profileRes.ok) {
+        const profileHtml = await profileRes.text();
+        const profileDoc = parseHtml(profileHtml);
+
+        // Extract profile data from rendered form input values
+        // JSP renders: <input id="firstName" value="${adminUser.firstname}" />
+        firstname = inputValueOrNull(profileDoc, 'firstName');
+        lastname = inputValueOrNull(profileDoc, 'lastName');
+        emailAddress = inputValueOrNull(profileDoc, 'email');
+        mobileno = inputValueOrNull(profileDoc, 'phoneNumber');
+        roleName = inputValueOrNull(profileDoc, 'role');
+
+        // Username might also be in an input field
+        const usernameInput = inputValueOrNull(profileDoc, 'userName');
+        if (usernameInput && !username) {
+          username = usernameInput;
+        }
+
+        // Extract enrollment date and timezone from span element
+        // JSP renders: <span id="enrollmentDateSpan">${myprofile.user.enrolmentDateString} ${timeZone}</span>
+        // Format: "Jan 15, 2024 EST" or "Jan 5, 2016 at 08:26:07 AM PST"
+        const spanText = textOfOrNull(profileDoc, 'enrollmentDateSpan');
+        if (spanText) {
+          // Split by last whitespace to separate date from timezone
+          // Timezone is always the last token (3-4 uppercase letters)
+          const parts = spanText.match(/^(.+)\s+([A-Z]{3,4})$/);
+          if (parts) {
+            enrollmentDate = parts[1].trim();
+            timezone = parts[2];
+          } else {
+            // Fallback: if no timezone found, treat whole string as date
+            enrollmentDate = spanText.trim();
+          }
+        }
+
+        // Try alternate timezone sources if not found in enrollment span
+        if (!timezone) {
+          const tzElement = profileDoc.querySelector('[data-timezone], [id*="timezone"]');
+          if (tzElement) {
+            timezone = tzElement.textContent?.trim() || null;
+          }
+        }
+      }
+    } catch (err) {
+      console.debug('Could not fetch profile page to extract user data', err);
+    }
+  }
+
+  return {
+    features,
+    username,
+    firstname,
+    lastname,
+    emailAddress,
+    mobileno,
+    roleName,
+    roleSlug,
+    enrollmentDate,
+    timezone,
+    buildVersion,
+    loggedIn,
+  };
 }
